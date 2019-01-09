@@ -1,4 +1,4 @@
-#'@import dplyr
+#' @imports dplyr
 NULL
 
 #' A "which cell is that" function.
@@ -10,14 +10,15 @@ NULL
 #' @export
 #' @examples
 #' set.seed(3)
-#' data(panglaodb)
+#'
+#' data(panglaoDB)
 #' markers <- panglaodb$official.gene.symbol[c(1:10, sample(x = 1:7000,size = 10))]
 #' wcit(markers)
 
 
 wcit <- function(markers, panglao = T){
-
-  marker_hits <- filter(panglaodb, official.gene.symbol %in% markers)
+  data("panglaoDB")
+  marker_hits <- dplyr::filter(panglaoDB, official.gene.symbol %in% markers)
 
   cell_rank <- table(marker_hits$cell.type)
 

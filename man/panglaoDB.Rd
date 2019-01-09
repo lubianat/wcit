@@ -6,7 +6,7 @@
 \title{PanglaoDB of gene markers}
 \format{data frame}
 \usage{
-data(panglaodb)
+data(panglaoDB)
 }
 \description{
 database of gene markers downloaded from https://panglaodb.se/markers.html?cell_type=%27all_cells%27#

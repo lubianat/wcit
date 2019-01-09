@@ -16,7 +16,8 @@ This function allows you to infer the cell identity from a list of putative mark
 }
 \examples{
 set.seed(3)
-data(panglaodb)
+
+data(panglaoDB)
 markers <- panglaodb$official.gene.symbol[c(1:10, sample(x = 1:7000,size = 10))]
 wcit(markers)
 }

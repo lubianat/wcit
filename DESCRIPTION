@@ -6,6 +6,7 @@ Author: Tiago Lubiana
 Maintainer: Tiago Lubiana <tiago.lubiana.alves@usp.br>
 Description: This package is intended to process list of gene markers detected in single cell studies. The markers from the clusterswill be crossed with databases to determine what is the likely identity of the cells in a given cluster.
 License: GPL-3
+Depends: dplyr
 Encoding: UTF-8
 LazyData: false
 RoxygenNote: 6.1.1
