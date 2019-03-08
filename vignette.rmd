@@ -1,0 +1,35 @@
+
+Let's try and find the indentity of the clusters below
+
+
+
+```{r}
+library(Seurat)
+library(dplyr)
+data("pbmc_small")
+
+pbmc_small@ident
+TSNEPlot(pbmc_small, do.label = T)
+
+```
+
+
+
+First, let's detect the markers.
+
+```{r}
+markers <- Seurat::FindAllMarkers(pbmc_small)
+
+```
+
+So these are the markers for the different clusters. Let's run wcit and see if we can infer which type of cells they are most similar to. 
+
+```{r}
+library(wcit)
+print("According to panglao db:")
+for (i in levels(markers$cluster)){
+  print(paste('For cluster', i, 'The most likely cell types are:'))
+  print(wcit(markers$gene[markers$cluster == i]))
+}
+```
+
