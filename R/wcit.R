@@ -17,7 +17,7 @@ NULL
 
 
 wcit <- function(markers, panglao = T){
-  data("panglaodb")
+  data("panglaoDB")
   marker_hits <- dplyr::filter(panglaoDB, official.gene.symbol %in% markers)
 
   cell_rank <- table(marker_hits$cell.type)
