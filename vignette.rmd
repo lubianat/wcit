@@ -33,3 +33,15 @@ for (i in levels(markers$cluster)){
 }
 ```
 
+Let's manually look at the markers, as it is done normally.
+
+```{r}
+for (i in levels(markers$cluster)){
+  print(markers$gene[markers$cluster == i][1:10])
+}
+```
+
+Cluster 0 has a higher expression of CD3D, which points at it being enriched for T cells, indeed. 
+Cluster 1  expresses CD14, Lysozime and S100A9, pointing at monocytes/dendritic cells.
+Cluster 2 expresses GNLY, GZMB, PRF1,GZMA and NKG7, pointing at likely being a cluster of cytotoxic cells.
+Cluster 3 expresses PPBP, a classic platelet marker, corroborating its nature as megakaryocites/platelets.
