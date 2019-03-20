@@ -15,9 +15,9 @@
 #' database of gene markers downloaded from https://academic.oup.com/nar/article/47/D1/D721/5115823
 #'
 
-#' @name CellMarkers
+#' @name CellMarkersDB
 #' @docType data
-#' @usage data(CellMarkers)
+#' @usage data(CellMarkersDB)
 #' @format data frame
 #' @keywords datasets, cell-markers, database
-"CellMarkers"
+"CellMarkersDB"
