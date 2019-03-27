@@ -33,7 +33,10 @@ wcit <- function(markers, panglao = T, CellMarkers = T ){
     # (2) Query the dirty database in a more rational way.
 
     data("CellMarkersDB")
-    marker_hits <- CellMarkersDB[CellMarkersDB[['geneSymbol']] %in% markers,]
+    marker_hits <-data.frame()
+    for (gene in markers){
+      marker_hits <- rbind(marker_hits,CellMarkersDB[grep(gene, CellMarkersDB$geneSymbol),])
+    }
     cell_rank <- table(marker_hits$cellName)
     cell_rank <- sort(cell_rank, decreasing = T)
     ranks$CellMarkersDB <-cell_rank
