@@ -9,7 +9,8 @@ wcit_magic(seurat_object, number_of_markers = 10)
 \arguments{
 \item{seurat_object}{A seurat object already clusterized.}
 
-\item{number_of_markers}{Number of markers extracted from the FindAllMarkers}
+\item{number_of_markers}{Number of markers extracted from the FindAllMarkers
+function that will be used for calculation. Defaults to 10.}
 }
 \description{
 This function allows you to infer the Seurat clusters identity from a list of putative markers

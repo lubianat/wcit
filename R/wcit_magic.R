@@ -5,8 +5,9 @@
 #'
 #' @param seurat_object A seurat object already clusterized.
 #' @param number_of_markers Number of markers extracted from the FindAllMarkers
-#' @import Seurat
 #' function that will be used for calculation. Defaults to 10.
+#' @import Seurat
+#' @import dplyr
 #' @keywords single-cell
 #' @export
 
