@@ -1,7 +1,7 @@
 Package: wcit
 Type: Package
 Title: Which Cell is That (WCIT) points out the likely cell identity from a list of markers
-Version: 0.1.0
+Version: 0.2.0
 Author: Tiago Lubiana
 Maintainer: Tiago Lubiana <tiago.lubiana.alves@usp.br>
 Description: This package is intended to process list of gene markers detected in single cell studies. The markers from the clusterswill be crossed with databases to determine what is the likely identity of the cells in a given cluster.
