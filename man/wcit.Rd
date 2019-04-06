@@ -4,12 +4,14 @@
 \alias{wcit}
 \title{A "which cell is that" function.}
 \usage{
-wcit(markers, panglao = T)
+wcit(markers, panglao = T, CellMarkers = T)
 }
 \arguments{
 \item{markers}{A vector containing the gene markers in Gene Symbol format, for humans}
 
 \item{panglao}{A boolean determining if panglaoDB is going to be used or not. Defaults to TRUE}
+
+\item{CellMarkers}{A boolean determining if CellMarkersDB is going to be used or not. Defaults to TRUE}
 }
 \description{
 This function allows you to infer the cell identity from a list of putative markers
