@@ -8,7 +8,7 @@ library(Seurat)
 library(dplyr)
 data("pbmc_small")
 
-pbmc_small@ident
+pbmc_small@active.ident
 TSNEPlot(pbmc_small, do.label = T)
 
 ```
@@ -35,12 +35,19 @@ for (i in levels(pbmc_markers$cluster)){
 Let's manually look at the markers, as it is done normally.
 
 ```{r}
-for (i in levels(pbmc_markers$cluster)){
-  print(pbmc_markers$gene[pbmc_markers$cluster == i][1:10])
+for (i in levels(markers$cluster)){
+  print(markers$gene[markers$cluster == i][1:10])
 }
 ```
 
-Cluster 0 has a higher expression of CD3D, which points at it being enriched for T cells, indeed. 
-Cluster 1  expresses CD14, Lysozime and S100A9, pointing at monocytes/dendritic cells.
-Cluster 2 expresses GNLY, GZMB, PRF1,GZMA and NKG7, pointing at likely being a cluster of cytotoxic cells.
-Cluster 3 expresses PPBP, a classic platelet marker, corroborating its nature as megakaryocites/platelets.
+Cluster 0 has as markers  HLA and LYZ, pointing to macrophages/monocytes or dendritic cells.
+Cluster 1  expresses S100A9, LST1, AIF1, pointing to monocytes.
+Cluster 2 expresses CD79A and CD79B, pointin indeed to B cells.
+
+Let's run the wcit magic 
+```{r}
+pbmc_small_after_magic <- wcit_magic(pbmc_small)
+
+```
+
+

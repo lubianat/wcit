@@ -25,9 +25,9 @@ wcit_magic <- function (seurat_object, number_of_markers = 10 ){
     guesses <- c(guesses, names(wcit_result[['panglaoDB']][1]))
   }
 
-  current.cluster.ids <- levels(seurat_object@ident)
+  current.cluster.ids <- levels(seurat_object@active.ident)
   new.cluster.ids <- guesses
-  seurat_object@ident <- plyr::mapvalues(x = seurat_object@ident, from = current.cluster.ids, to = new.cluster.ids)
+  seurat_object@active.ident <- plyr::mapvalues(x = seurat_object@active.ident, from = current.cluster.ids, to = new.cluster.ids)
   TSNEPlot(object = seurat_object, do.label = TRUE, pt.size = 0.5)
   return(seurat_object)
 }
