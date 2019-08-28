@@ -4,7 +4,7 @@
 \alias{wcit}
 \title{A "which cell is that" function.}
 \usage{
-wcit(markers, panglao = T, CellMarkers = T)
+wcit(markers, panglao = TRUE, CellMarkers = TRUE)
 }
 \arguments{
 \item{markers}{A vector containing the gene markers in Gene Symbol format, for humans}
@@ -13,14 +13,17 @@ wcit(markers, panglao = T, CellMarkers = T)
 
 \item{CellMarkers}{A boolean determining if CellMarkersDB is going to be used or not. Defaults to TRUE}
 }
+\value{
+A list of putative cell types
+}
 \description{
 This function allows you to infer the cell identity from a list of putative markers
 }
 \examples{
-set.seed(3)
+  set.seed(3)
 
-data(panglaoDB)
-markers <- panglaodb$official.gene.symbol[c(1:10, sample(x = 1:7000,size = 10))]
-wcit(markers)
+  data(panglaoDB)
+  markers <- panglaoDB$`official gene symbol`[c(1:10, sample(x = 1:7000,size = 10))]
+  wcit(markers)
 }
 \keyword{single-cell}

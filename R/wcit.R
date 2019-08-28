@@ -4,6 +4,7 @@
 #' @param markers A vector containing the gene markers in Gene Symbol format, for humans
 #' @param panglao A boolean determining if panglaoDB is going to be used or not. Defaults to TRUE
 #' @param CellMarkers A boolean determining if CellMarkersDB is going to be used or not. Defaults to TRUE
+#' @return A list of putative cell types
 #' @keywords single-cell
 #' @export
 #' @examples
