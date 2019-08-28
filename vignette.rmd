@@ -6,10 +6,13 @@ Let's try and find the indentity of the clusters below
 ```{r}
 library(Seurat)
 library(dplyr)
-data("pbmc_small")
 
-pbmc_small@active.ident
-TSNEPlot(pbmc_small, do.label = T)
+# We are using the output of Seurat's tutorial for this vignette. 
+# Check https://satijalab.org/seurat/v3.0/pbmc3k_tutorial.html
+
+pbmc <- readRDS(file = 'output/pbmc3k_final.rds')
+DimPlot(pbmc, reduction = "umap", label = TRUE, pt.size = 0.5) + NoLegend()
+
 
 ```
 
@@ -17,8 +20,8 @@ TSNEPlot(pbmc_small, do.label = T)
 
 First, let's detect the markers.
 
-```{r}
-pbmc_markers <- Seurat::FindAllMarkers(pbmc_small)
+```{r message=FALSE, warning=FALSE}
+pbmc_markers <- Seurat::FindAllMarkers(pbmc)
 
 ```
 
@@ -28,26 +31,41 @@ So these are the markers for the different clusters. Let's run wcit and see if w
 library(wcit)
 for (i in levels(pbmc_markers$cluster)){
   print(paste('For cluster', i, 'The most likely cell types are:'))
-  wcit(pbmc_markers$gene[pbmc_markers$cluster == i])
+  wcit(pbmc_markers$gene[pbmc_markers$cluster == i], CellMarkers = FALSE)
 }
 ```
 
-Let's manually look at the markers, as it is done normally.
+Just by looking at the top hit from panglaoDB and all the markers for the cluster, 
+wcit got it right 4/9 times:
+  
+B cells, platelets, NK cells, and T cells (for CD8 T cells). 
+
+
+A few other hits are among the top 3: Macrophages por FCGR3A+ Mono and Memory T Cells for Memory CD4. 
+
+Let's be a bit more stringent and use only the top 20 markers for each cell type.
+
 
 ```{r}
-for (i in levels(markers$cluster)){
-  print(markers$gene[markers$cluster == i][1:10])
-}
+library(wcit)
+  number_of_markers <- 20
+  top_markers <- pbmc_markers %>% group_by(cluster) %>% top_n(number_of_markers, avg_logFC)
+  
+    for (i in levels(top_markers$cluster)){
+    print(i)
+    selected_markers <- top_markers$gene[top_markers$cluster==i]
+    wcit(selected_markers, CellMarkers = FALSE)
+  }
+
 ```
 
-Cluster 0 has as markers  HLA and LYZ, pointing to macrophages/monocytes or dendritic cells.
-Cluster 1  expresses S100A9, LST1, AIF1, pointing to monocytes.
-Cluster 2 expresses CD79A and CD79B, pointin indeed to B cells.
+The correct assignement was done in almost all cases!
 
-Let's run the wcit magic 
+The naive T cells were called memory, and CD8 T cells were called a tie between T-Cell and NK.  T CD8 and NK cells, however, are rather similar and this is already a very good hint. 
+
+
+
 ```{r}
-pbmc_small_after_magic <- wcit_magic(pbmc_small)
 
 ```
-
 

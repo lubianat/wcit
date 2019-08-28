@@ -14,18 +14,18 @@
 #'   wcit(markers)
 
 
-wcit <- function(markers, panglao = T, CellMarkers = T ){
+wcit <- function(markers, panglao = TRUE, CellMarkers = TRUE ){
   ranks <- list()
-  if (panglao == T){
+  if (panglao == TRUE){
     data("panglaoDB")
     marker_hits <- panglaoDB[panglaoDB$`official gene symbol` %in% markers,]
     cell_rank <- table(marker_hits$`cell type`)
-    cell_rank <- sort(cell_rank, decreasing = T)
+    cell_rank <- sort(cell_rank, decreasing = TRUE)
     ranks$panglaoDB <-cell_rank
     print(paste("Top cell types according to", 'panglaoDB', ':'))
     print(head(cell_rank, 3))
   }
-  if (CellMarkers == T){
+  if (CellMarkers == TRUE){
 
 ## Note that many cell types are not being considered due to the way the database was constructed
     # options
@@ -38,7 +38,7 @@ wcit <- function(markers, panglao = T, CellMarkers = T ){
       marker_hits <- rbind(marker_hits,CellMarkersDB[grep(gene, CellMarkersDB$geneSymbol),])
     }
     cell_rank <- table(marker_hits$cellName)
-    cell_rank <- sort(cell_rank, decreasing = T)
+    cell_rank <- sort(cell_rank, decreasing = TRUE)
     ranks$CellMarkersDB <-cell_rank
     print(paste("Top cell types according to", 'CellMarkersDB', ':'))
     print(head(cell_rank, 3))

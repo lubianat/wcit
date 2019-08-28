@@ -3,3 +3,5 @@
 .RData
 .Ruserdata
 *.rds
+*.gz
+filtered_gene_bc_matrices/hg19

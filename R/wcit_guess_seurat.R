@@ -12,7 +12,6 @@
 #' @import Seurat
 #' @import dplyr
 #' @keywords single-cell
-#' @export
 
 wcit_guess_seurat <- function (seurat_object, number_of_markers = 20 ){
 
@@ -27,7 +26,7 @@ wcit_guess_seurat <- function (seurat_object, number_of_markers = 20 ){
   for (i in levels(top_markers$cluster)){
     print(i)
     selected_markers <- top_markers$gene[top_markers$cluster==i]
-    wcit_result<- wcit(selected_markers, CellMarkers = F)
+    wcit_result<- wcit(selected_markers, CellMarkers = FALSE)
     guesses_now <- as.data.frame(wcit_result[['panglaoDB']])[1:3,]
     names(guesses_now) <- c('wcit_guess', 'panglaoDB')
     guesses_now$cluster <- rep(i,3)
@@ -46,8 +45,8 @@ wcit_guess_seurat <- function (seurat_object, number_of_markers = 20 ){
 
 
       for (j in guesses_for_this_cluster){
-        pubscore_genes <- PubScore::get_literature_score(gene = selected_markers, terms_of_interest = j, is.list=T)
-        pubscore_base <-  PubScore::get_literature_score(gene = "", terms_of_interest = j, is.list=F)
+        pubscore_genes <- PubScore::get_literature_score(gene = selected_markers, terms_of_interest = j, is.list=TRUE)
+        pubscore_base <-  PubScore::get_literature_score(gene = "", terms_of_interest = j, is.list=FALSE)
         pubscore_ratio <- pubscore_genes$list_literature_score / pubscore_base$gene_literature_score
         this_guess <- pubscore_ratio
         guesses$pubscore[which(guesses$cluster == i & guesses$wcit_guess == j)] <- this_guess
