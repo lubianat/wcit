@@ -20,10 +20,8 @@ A list of putative cell types
 This function allows you to infer the cell identity from a list of putative markers
 }
 \examples{
-  set.seed(3)
-
-  data(panglaoDB)
-  markers <- panglaoDB$`official gene symbol`[c(1:10, sample(x = 1:7000,size = 10))]
-  wcit(markers)
+# B cell markers
+  markers <- c("CD79A", "CD79B", "MS4A1")
+  marker_hits <- wcit(markers)
 }
 \keyword{single-cell}
